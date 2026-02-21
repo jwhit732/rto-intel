@@ -117,13 +117,19 @@ async def run_weekly_pipeline():
             # Record history snapshot for pattern memory
             scope_data = current_data.get("scope")
             reg_data = current_data.get("registration")
+            reg_status = None
+            if isinstance(reg_data, dict):
+                reg_status = reg_data.get("status")
+            elif isinstance(reg_data, list) and len(reg_data) > 0:
+                reg_status = reg_data[0].get("status") if isinstance(reg_data[0], dict) else None
+
             db.record_rto_snapshot(
                 rto_code=rto_code,
                 qual_count=prospect.qual_count or 0,
                 has_restrictions=bool(current_data.get("restrictions")),
                 scope_items=len(scope_data) if isinstance(scope_data, list) else 0,
                 regulatory_events=len(events) if events else 0,
-                registration_status=reg_data.get("status") if reg_data else None,
+                registration_status=reg_status,
             )
 
             success_count += 1
