@@ -63,12 +63,8 @@ class Config:
 
     def _validate(self):
         """Validate configuration."""
-        # Check prospects file exists
-        if not self.prospects_file.exists():
-            raise FileNotFoundError(
-                f"Prospects file not found: {self.prospects_file}. "
-                f"Expected path: {self.prospects_file.absolute()}"
-            )
+        # Prospects file is optional (only needed for initial load)
+        # Weekly runs read from database, not Excel
 
         # Ensure database directory exists
         self.database_path.parent.mkdir(parents=True, exist_ok=True)
