@@ -1,0 +1,46 @@
+# Environment
+.env
+*.env
+!.env.example
+
+# Database
+data/rto_intel.db
+data/*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Output
+output/
+
+# Prospect data (contains contact info)
+prospects/
+
+# Claude Code
+.claude/
